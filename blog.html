@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Blog</title>
+
+
+
+  
+
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Tushar</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="project.html">Project</a>
+      <button id="toggle-theme" aria-label="Toggle Theme">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="blog-list" class="blog-list">
+    <div class="blog-header">
+      <h2>📚 My Blog Posts</h2>
+      <select id="sort-select">
+        <option value="newest">Sort by: Newest</option>
+        <option value="oldest">Sort by: Oldest</option>
+      </select>
+    </div>
+  </main>
+  <!-- Blog posts will be rendered here by script.js -->
+
+
+  <!-- Scripts -->
+  <script src="theme.js"></script>
+  <script src="blogData.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

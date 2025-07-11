@@ -1,0 +1,303 @@
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --link: #1a0dab;
+  --font-body: "Poppins", sans-serif;
+}
+
+html.dark {
+  --bg: #121212;
+  --text: #f1f1f1;
+  --link: #66ccff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--bg);
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+#toggle-theme {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+/* Home Page Layout */
+main.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+  min-height: calc(100vh - 80px);
+  text-align: center;
+}
+
+.profile-pic img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+.intro {
+  max-width: 500px;
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.intro p strong {
+  font-weight: 600;
+}
+
+.intro a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+/* Blog Page */
+.blog-list {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+#sort-select {
+  padding: 0.4rem 0.6rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.blog-card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+}
+
+.blog-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.blog-card-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.meta {
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+.meta .date {
+  display: block;
+  opacity: 0.6;
+  margin-bottom: 0.3rem;
+}
+
+.meta .tag {
+  display: inline-block;
+  background: #eee;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.blog-content {
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+.like-btn {
+  font-size: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.2);
+}
+
+.like-btn.liked {
+  color: red;
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5) rotate(10deg);
+  }
+  100% {
+    transform: scale(1);
+  }
+  
+}
+
+
+/* Projects Page */
+.project-list {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.project-list ul {
+  padding-left: 1.2rem;
+}
+
+.project-list a {
+  color: var(--link);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* Coming Soon */
+.coming-soon-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.coming-soon {
+  position: absolute;
+  left: 50%;
+  bottom: -100px;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+  animation: riseToTop 2.5s ease-out forwards;
+}
+
+@keyframes riseToTop {
+  0% {
+    bottom: -100px;
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 80px;
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  main.container {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+
+  .intro {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-pic img {
+    width: 150px;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-links {
+    font-size: 0.9rem;
+  }
+
+  .intro {
+    font-size: 0.95rem;
+  }
+
+  .project-list {
+    padding: 1rem;
+  }
+}
