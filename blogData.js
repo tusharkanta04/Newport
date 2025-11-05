@@ -40,8 +40,5 @@ const blogPosts = [
       <p>Thanks for reading!</p>
     `,
   },
-  // Add more blog posts here//
-  
-// Add more blog posts here
-];
+ 
 
