@@ -1,3 +1,14 @@
+// ==========================
+//  Apply Dark Mode Immediately
+// ==========================
+(function () {
+  const userTheme = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  if (userTheme === "dark" || (!userTheme && prefersDark)) {
+    document.documentElement.classList.add("dark");
+  }
+})();
+
 // 🌙 Theme Toggle Setup
 const toggleThemeBtn = document.getElementById("toggle-theme");
 const introText = document.getElementById("intro-text");
@@ -6,7 +17,7 @@ function updateIntroText(isDark) {
   if (!introText) return;
   introText.textContent = isDark
     ? "My downtime usually includes cricket matches, writing blogs, and getting lost in great films."
-    : "Who loves crafting clean, responsive, and user-friendly web experiences."
+    : "Who loves crafting clean, responsive, and user-friendly web experiences.";
 }
 
 function updateTheme() {
@@ -17,109 +28,40 @@ function updateTheme() {
   lucide.createIcons();
 }
 
+// Set initial theme on load
 const savedTheme = localStorage.getItem("theme");
 if (savedTheme === "dark") {
   document.documentElement.classList.add("dark");
 }
 
 const currentDark = document.documentElement.classList.contains("dark");
-toggleThemeBtn.innerHTML = `<i data-lucide="${currentDark ? "sun" : "moon"}"></i>`;
+if (toggleThemeBtn) {
+  toggleThemeBtn.innerHTML = `<i data-lucide="${currentDark ? "sun" : "moon"}"></i>`;
+  toggleThemeBtn.addEventListener("click", updateTheme);
+}
 updateIntroText(currentDark);
 lucide.createIcons();
-toggleThemeBtn.addEventListener("click", updateTheme);
 
 // ==========================
-//  Blog Renderer + Sorter
+//  Page-Specific Logic
 // ==========================
 document.addEventListener("DOMContentLoaded", () => {
+  // ----- Blog Page -----
   const blogList = document.getElementById("blog-list");
-  const sortSelect = document.getElementById("sort-select");
+  if (typeof blogPosts !== "undefined" && blogList) {
+    blogList.innerHTML = ""; // Clear existing
 
-  function parseDate(dateStr) {
-    return new Date(Date.parse(dateStr + " 1"));
-  }
-
-  function renderPosts(posts) {
-    blogList.querySelectorAll(".blog-card").forEach(el => el.remove());
-
-    posts.forEach(post => {
-      const postEl = document.createElement("section");
-      postEl.className = "blog-card";
-
-      postEl.innerHTML = `
-        <div class="blog-card-header">
-          <h3>${post.title}</h3>
-          <div class="meta">
-            <span class="date">${post.date}</span>
-            <span class="tag">#${post.tag}</span>
-          </div>
-        </div>
-        <div class="blog-content">${post.content}</div>
-        <div class="like-box" data-post="${post.title}">
-          <button class="like-btn">❤️</button>
-          <span class="like-count">0</span>
-        </div>
+    blogPosts.forEach(post => {
+      const blogEl = document.createElement("section");
+      blogEl.className = "blog-card";
+      blogEl.innerHTML = `
+        <h3 class="text-xl font-semibold">${post.title}</h3>
+        <small class="text-sm text-muted">${post.date} • ${post.tag}</small>
+        <div class="blog-content mt-2">${post.content}</div>
       `;
-
-      blogList.appendChild(postEl);
+      blogList.appendChild(blogEl);
     });
 
     if (window.lucide) lucide.createIcons();
-
-    // Attach Like Button Events with Firebase and Effects
-    document.querySelectorAll(".like-box").forEach(box => {
-      const postId = box.getAttribute("data-post");
-      const likeBtn = box.querySelector(".like-btn");
-      const likeCount = box.querySelector(".like-count");
-      const postRef = firebase.firestore().collection("likes").doc(postId);
-      const likedKey = `liked_${postId}`;
-
-      // Real-time updates
-      postRef.onSnapshot(doc => {
-        likeCount.textContent = doc.exists ? doc.data().count || 0 : 0;
-      });
-
-      likeBtn.addEventListener("click", () => {
-        const alreadyLiked = localStorage.getItem(likedKey);
-
-        postRef.get().then(doc => {
-          let count = doc.exists ? doc.data().count || 0 : 0;
-
-          if (alreadyLiked) {
-            // Unlike
-            count = Math.max(0, count - 1);
-            postRef.set({ count });
-            localStorage.removeItem(likedKey);
-            likeBtn.classList.remove("liked");
-          } else {
-            // Like
-            count = count + 1;
-            postRef.set({ count });
-            localStorage.setItem(likedKey, "true");
-            likeBtn.classList.add("liked");
-            showSparkle(likeBtn);
-          }
-        });
-      });
-    });
-  }
-
-  function sortPosts(order) {
-    const sorted = [...blogPosts].sort((a, b) => {
-      const dateA = parseDate(a.date);
-      const dateB = parseDate(b.date);
-      return order === "newest" ? dateB - dateA : dateA - dateB;
-    });
-    renderPosts(sorted);
-  }
-
-  if (blogList && typeof blogPosts !== "undefined") {
-    sortPosts("newest");
-
-    if (sortSelect) {
-      sortSelect.addEventListener("change", () => {
-        sortPosts(sortSelect.value);
-      });
-    }
   }
 });
