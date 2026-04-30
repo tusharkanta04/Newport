@@ -2,7 +2,7 @@
 
 const blogPosts = [
   {
-    title: " How I Built This Site",
+    title: " How I Built This Site ",
     date: "July 2024",
     tag: "WebDev",
     content: `
