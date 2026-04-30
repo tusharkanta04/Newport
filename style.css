@@ -138,73 +138,27 @@ main.container {
   transform: translateY(-4px);
 }
 
-.blog-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.blog-card-header h3 {
-  margin: 0;
+.blog-card h3 {
+  margin: 0 0 0.5rem 0;
   font-size: 1.3rem;
 }
 
-.meta {
-  text-align: right;
-  font-size: 0.9rem;
-}
-
-.meta .date {
+.blog-card small {
   display: block;
-  opacity: 0.6;
-  margin-bottom: 0.3rem;
-}
-
-.meta .tag {
-  display: inline-block;
-  background: #eee;
-  padding: 0.2rem 0.5rem;
-  border-radius: 5px;
-  font-size: 0.85rem;
-  color: #444;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  opacity: 0.75;
 }
 
 .blog-content {
   margin-top: 1rem;
   line-height: 1.6;
 }
-.like-btn {
-  font-size: 20px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, color 0.3s ease;
-}
 
-.like-btn:hover {
-  transform: scale(1.2);
+.blog-content p {
+  margin-bottom: 1rem;
 }
-
-.like-btn.liked {
-  color: red;
-  animation: pop 0.4s ease;
-}
-
-@keyframes pop {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.5) rotate(10deg);
-  }
-  100% {
-    transform: scale(1);
-  }
-  
-}
-
 
 /* Projects Page */
 .project-list {
