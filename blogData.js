@@ -1,6 +1,6 @@
 const blogPosts = [
  {
-  title: "How I Built My Portfolio Website",
+  title: " I Built My Portfolio Website",
   date: "March 2024",
   tag: "WebDev",
   content: `
