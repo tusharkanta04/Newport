@@ -22,7 +22,7 @@ const blogPosts = [
 
     <p>In the future, I plan to improve this portfolio by adding animations, better project showcases, and backend integration for managing blog posts more efficiently.</p>
   `} 
- ```javascript
+ 
 {
   title: "Ganesh Puja — A Few Days Back Home",
   date: "September 2026",
