@@ -24,6 +24,8 @@ const blogPosts = [
   `} 
  
 {
+ const blogPosts = [
+  {
   title: "Ganesh Puja — A Few Days Back Home",
   date: "September 2026",
   tag: "Life",
@@ -43,9 +45,7 @@ const blogPosts = [
     <p>Eventually, I had to return to my regular routine, but I came back with a happy mind and some really good memories.</p>
 
     <p><strong>Sometimes, you don't need a big trip or an expensive vacation to feel refreshed. Sometimes, going back home for a few days is enough. ❤️</strong></p>
-  `
-}
-```
+  `}
 
    // Add more blog posts here 
 ];
