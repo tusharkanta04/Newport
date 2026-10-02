@@ -47,7 +47,7 @@ const blogPosts = [
     <p><strong>Sometimes, you don't need a big trip or an expensive vacation to feel refreshed. Sometimes, going back home for a few days is enough. ❤️</strong></p>
   `}
 
-   // Add more blog posts here 
+  ];
 ];
 
    
